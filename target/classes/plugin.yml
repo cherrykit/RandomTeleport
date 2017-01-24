@@ -1,0 +1,8 @@
+name: RandomTeleport
+main: me.cherrykit.RandomTeleport
+version: 1.0
+
+commands:
+   random:
+     description: Teleports you to a random location.
+     usage: /random
