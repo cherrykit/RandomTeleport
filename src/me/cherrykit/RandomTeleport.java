@@ -23,20 +23,25 @@ public class RandomTeleport extends JavaPlugin {
 	public void onDisable() {}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("random") && sender instanceof Player) {
-        	Player p = (Player) sender;
-        	int x,y,z;
-        	
-            do {
-        	x = (int) (Math.random()*2000 - 1000);
-            z = (int) (Math.random()*2000 - 1000);
-            y = w.getHighestBlockYAt(x, z);
-            } while (w.getBlockAt(x, y-1, z).getType() == Material.LAVA);
-            
-            p.teleport(new Location(w, x, y, z));
-            p.sendMessage(ChatColor.DARK_GRAY + "You have been teleported to a random location");
-            return true;
-        }
-        return false;
-    }
+       
+		//Resigsters /random command
+		if (cmd.getName().equalsIgnoreCase("random") && sender instanceof Player) {
+			Player p = (Player) sender;
+			int x,y,z;
+        
+			//Gets random coordinates
+			do {
+				x = (int) (Math.random()*2000 - 1000);
+				z = (int) (Math.random()*2000 - 1000);
+				y = w.getHighestBlockYAt(x, z);
+			} while (w.getBlockAt(x, y-1, z).getType() == Material.LAVA);
+			
+			//Teleports player
+			p.teleport(new Location(w, x, y, z));
+			p.sendMessage(ChatColor.DARK_GRAY + "You have been teleported to a random location");
+			return true;
+		}
+		
+		return false;
+	}
 }
